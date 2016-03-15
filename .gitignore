@@ -2,6 +2,8 @@
 .kitchen
 .vagrant
 .DS_Store
+data_bags
+data_bags/*
 
 # You should check in your Gemfile.lock in applications, and not in gems
 # This also matches Berksfile.lock
