@@ -4,7 +4,7 @@ maintainer_email 'andrew.zeswitz@icfi.com'
 license 'all_rights'
 description 'Installs/Configures awesome_customers_ubuntu'
 long_description 'Installs/Configures awesome_customers_ubuntu'
-version '0.1.2'
+version '0.1.3'
 
 depends 'apt', '~> 3.0.0'
 depends 'firewall', '~> 2.5.0'
