@@ -2,11 +2,14 @@
 2222 -> 22
 
 ssh -i /Users/AZeswitz/Data/chef/learn_chef/.vagrant/machines/default/virtualbox -l vagrant -p 2222 localhost
-ssh -i /Users/AZeswitz/Data/chef/awesome_customers_ubuntu/.vagrant/machines/default/virtualbox -l vagrant -p 2200 localhost
 
+ssh -i /Users/AZeswitz/Data/chef/awesome_customers_ubuntu/.vagrant/machines/default/virtualbox -l vagrant -p 2222 localhost 'mkdir -p /home/vagrant/chef'
 
 knife bootstrap localhost --ssh-port 2222 --ssh-user vagrant --sudo --identity-file /Users/AZeswitz/Data/chef/learn_chef/.vagrant/machines/default/virtualbox --node-name node1 --run-list 'recipe[learn_chef_apache2]'
-knife bootstrap localhost --ssh-port 2200 --ssh-user vagrant --sudo --identity-file /Users/AZeswitz/Data/chef/awesome_customers_ubuntu/.vagrant/machines/default/virtualbox --node-name customers_web_app --run-list 'recipe[awesome_customers_ubuntu]'
+
+ssh -i /Users/AZeswitz/Data/chef/awesome_customers_ubuntu/.vagrant/machines/default/virtualbox -l vagrant -p 2222 localhost
+scp -P 2222 -i /Users/AZeswitz/Data/chef/learn_chef/.vagrant/machines/default/virtualbox .chef/encrypted_data_bag_secret vagrant@localhost:/home/vagrant/chef
+knife bootstrap localhost --ssh-port 2222 --ssh-user vagrant --sudo --identity-file /Users/AZeswitz/Data/chef/awesome_customers_ubuntu/.vagrant/machines/default/virtualbox --node-name customers_web_app --run-list 'recipe[awesome_customers_ubuntu]'
 
 knife list
 knife node show node1
